@@ -9,10 +9,6 @@ import { IState } from '../../store';
 import { FormControl, InputLabel, MenuItem } from '@material-ui/core';
 import Select from '@material-ui/core/Select';
 
-const client = createClient({
-  url: 'https://react.eogresources.com/graphql',
-});
-
 const query = `
 query($latLong: WeatherQuery!) {
   getWeatherForLocation(latLong: $latLong) {
@@ -34,9 +30,7 @@ const getWeather = (state: IState) => {
 
 export default () => {
   return (
-    <Provider value={client}>
-      <Weather />
-    </Provider>
+    <Weather />
   );
 };
 
