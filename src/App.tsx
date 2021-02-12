@@ -1,7 +1,6 @@
 import React from 'react';
 import createStore from './store';
 import { Provider } from 'react-redux';
-import { useGeolocation } from 'react-use';
 import { ToastContainer } from 'react-toastify';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -25,15 +24,17 @@ const theme = createMuiTheme({
   },
 });
 
-
-const App = () => {
-  const state = useGeolocation();
-
-  return (
-    <div>
-      {JSON.stringify(state, null, 2)}
-    </div>
-  );
-}
+const App = () => (
+  <MuiThemeProvider theme={theme}>
+    <CssBaseline />
+    <Provider store={store}>
+      <Wrapper>
+        <Header />
+        <NowWhat />
+        <ToastContainer />
+      </Wrapper>
+    </Provider>
+  </MuiThemeProvider >
+);
 
 export default App;
